@@ -22,13 +22,13 @@ const LiveChat = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      // dispatch(
-      //   addMessage({
-      //     name: generateRandomName(),
-      //     message: generateRandomMessage(),
-      //   })
-      // );
-    }, 2000);
+      dispatch(
+        addMessage({
+          name: generateRandomName(),
+          message: generateRandomMessage(),
+        })
+      );
+    }, 1500);
     return () => clearInterval(timer);
   }, []);
 
