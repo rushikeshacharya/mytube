@@ -8,9 +8,8 @@ import { cacheResults } from "../store/searchSlice";
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const [showSuggestions, setShowSuggestions] = useState(true);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const searchCache = useSelector((store) => store.search);
-  console.log("Search Cache", searchCache);
 
   const dispatch = useDispatch();
 

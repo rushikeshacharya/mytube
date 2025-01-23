@@ -6,7 +6,7 @@ const Sidebar = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
 
   return !isMenuOpen ? null : (
-    <div className="p-5 shadow-lg w-42 divide-y pt-5">
+    <div className="p-5 shadow-lg w-52 divide-y pt-5">
       <div className="pb-2">
         <ul>
           <li>
