@@ -11,13 +11,6 @@ const list = [
   "Technology",
   "News",
   'Table Tenis',
-  "All",
-  "Gaming",
-  "Sports",
-  "Swimming",
-  "Badminton",
-  "Cooking",
-  "Technology",
 ];
 
 const ButtonList = () => {
