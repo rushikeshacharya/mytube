@@ -1,18 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../store/appSlice";
 import { Link } from "react-router-dom";
 import { SUGGESTIONS_API } from "../utils/constants";
+import { cacheResults } from "../store/searchSlice";
 
 const Head = () => {
-  const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(true);
+  const searchCache = useSelector((store) => store.search);
+  console.log("Search Cache", searchCache);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      getSearchSuggestions();
+      if (searchCache[searchQuery]) {
+        setShowSuggestions(searchCache[searchQuery]);
+      } else {
+        getSearchSuggestions();
+      }
     }, 300);
     return () => {
       clearTimeout(timer);
@@ -23,6 +31,11 @@ const Head = () => {
     const data = await fetch(SUGGESTIONS_API + searchQuery);
     const json = await data.json();
     setSuggestions(json[1]);
+    dispatch(
+      cacheResults({
+        [searchQuery]: json[1],
+      })
+    );
   };
 
   const toggleMenuHandler = () => {
